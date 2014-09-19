@@ -15,3 +15,43 @@
 
 @import "bootstrap";
 @import "font-awesome";
+
+body {
+  padding-top: 60px;
+  background: lightblue;
+}
+
+.list-show {
+  display: inline-block;
+  width: 250px;
+  float: left;
+  border: thin black solid;
+  margin: 0 5px;
+  background-color: lightgrey;
+  border-radius: 3px;
+}
+
+h4 {
+  margin: 0px;
+}
+
+.card-show {
+  display: block;
+  width: 95%;
+  background-color: white;
+  margin: 6px;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+.list-title {
+  margin: 6px;
+}
+
+.new-card {
+  padding: 6px;
+}
+
+.new-card:hover {
+  background-color: grey;
+}
