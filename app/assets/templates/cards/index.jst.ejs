@@ -1,8 +1,8 @@
-<ol class="cards-wrapper" id="#card-sortable">
+<div class="cards-wrapper card-sortable">
   <% cards.each( function(card) { %>
-    <li class="card-show">
+    <div class="card-show" data-id="<%= card.id %>">
       <h4><%= card.escape("title") %></h4>
       <a href="javascript: void(0)" class="close-button hidden">X</a>
-    </li>
+    </div>
   <% }) %>
-</ol>
+</div>

@@ -2,6 +2,10 @@
 TrelloClone.Views.ListIndex = Backbone.CompositeView.extend({
   template: JST["lists/index"],
   
+  events: {
+    "sortupdate .list-sortable": "shiftLists"
+  },
+  
   initialize: function () {
     this.listenTo(this.collection, "add", this.addList);
     this.listenTo(this.collection, "remove", this.removeList);
@@ -16,16 +20,13 @@ TrelloClone.Views.ListIndex = Backbone.CompositeView.extend({
   
   addList: function (list) {
     var view = new TrelloClone.Views.ListShow({ model: list });
-    this.addSubview("#" + list.id, view);
+    this.addSubview(".lists-wrapper", view);
   },
   
   removeList: function (list) {
-    var selector = "#" + list.id;
-    var subView = _.find(this.subviews(selector), function(subview) {
-      return subview.model === list;
-    });
+    var subView = this.findListSubview(list);
 
-    this.removeSubview("selector", subView);
+    this.removeSubview(".lists-wrapper", subView);
   },
   
   render: function () {
@@ -37,8 +38,29 @@ TrelloClone.Views.ListIndex = Backbone.CompositeView.extend({
     return this;
   },
   
+  findListSubview: function (list) {
+    return _.find(this.subviews(".lists-wrapper"), function(subview) {
+      return subview.model === list;
+    });
+  },
+  
   onRender: function () {
-    this.$el.find("#list-sortable").sortable();
-    this.$el.find("#list-sortable").disableSelection();
+    this.$el.find(".list-sortable").sortable();
+    this.$el.find(".list-sortable").disableSelection();
+  },
+  
+  shiftLists: function() {
+    var newOrd = this.$el.find(".list-sortable").sortable("toArray", {
+      "attribute": "data-id"
+    });
+    
+    for (var i = 0; i < newOrd.length; i++) {
+      var list = this.collection.get(newOrd[i]);
+      list.set("ord", i);
+      list.save();
+      
+      this.removeList(list);
+      this.addList(list);
+    }
   }
 });

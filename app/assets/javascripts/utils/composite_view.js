@@ -38,13 +38,16 @@ Backbone.CompositeView = Backbone.View.extend({
   },
   
   onRender: function () {
-    _(this.subviews()).each(function (subviews) {
-      _(subviews).each(function (subview) {
-        if (subview.onRender) {
-          subview.onRender();
-        }
+    var that = this;
+    setTimeout(function() {
+      _(that.subviews()).each(function (subviews) {
+        _(subviews).each(function (subview) {
+          if (subview.onRender) {
+            subview.onRender();
+          }
+        });
       });
-    });
+    }, 0);
   },
 
   remove: function () {
