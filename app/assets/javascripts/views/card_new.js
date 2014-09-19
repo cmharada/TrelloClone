@@ -25,7 +25,6 @@ TrelloClone.Views.CardNew = Backbone.View.extend({
     var that = this;
     
     var params = $(event.currentTarget).serializeJSON();
-    debugger;
     params.card.list_id = this.parentList.id;
     var lastCard = this.parentList.cards().last();
     if (lastCard) {

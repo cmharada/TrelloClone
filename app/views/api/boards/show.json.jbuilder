@@ -16,6 +16,7 @@ json.lists do
         json.title card.title
         json.ord card.ord
         json.description card.description
+        json.id card.id
       end
     end
   end
