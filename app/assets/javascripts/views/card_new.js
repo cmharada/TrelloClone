@@ -25,6 +25,7 @@ TrelloClone.Views.CardNew = Backbone.View.extend({
     var that = this;
     
     var params = $(event.currentTarget).serializeJSON();
+    debugger;
     params.card.list_id = this.parentList.id;
     var lastCard = this.parentList.cards().last();
     if (lastCard) {
@@ -37,6 +38,7 @@ TrelloClone.Views.CardNew = Backbone.View.extend({
     newCard.save({}, {
       success: function() {
         list.cards().add(newCard);
+        that.$el.find("#card_title").val("");
       },
       error: function(model, response) {
         that.$el.find(".errors").append(response.responseJSON);
@@ -47,5 +49,10 @@ TrelloClone.Views.CardNew = Backbone.View.extend({
   showForm: function() {
     this.$el.find(".new-card-text").addClass("hidden");
     this.$el.find(".new-card-form").removeClass("hidden");
+  },
+  
+  hideForm: function() {
+    this.$el.find(".new-card-text").removeClass("hidden");
+    this.$el.find(".new-card-form").addClass("hidden");
   }
 });
