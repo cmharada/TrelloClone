@@ -11,6 +11,11 @@ module Api
         render json: @card.errors.full_messages, status: :unprocessable_entity
       end
     end
+    
+    def show
+      @card = Card.find(params[:id])
+      render json: @card
+    end
 
     def update
       @card = Card.find(params[:id])

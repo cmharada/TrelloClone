@@ -47,9 +47,10 @@ TrelloClone.Views.ListIndex = Backbone.CompositeView.extend({
   onRender: function () {
     this.$el.find(".list-sortable").sortable();
     this.$el.find(".list-sortable").disableSelection();
+    Backbone.CompositeView.prototype.onRender.call(this);
   },
   
-  shiftLists: function() {
+  shiftLists: function(event, ui) {
     var newOrd = this.$el.find(".list-sortable").sortable("toArray", {
       "attribute": "data-id"
     });
