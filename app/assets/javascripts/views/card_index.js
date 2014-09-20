@@ -18,6 +18,8 @@ TrelloClone.Views.CardIndex = Backbone.View.extend({
     var renderedContent = this.template({ cards: this.collection });
     this.$el.html(renderedContent);
     
+    this.onRender();
+    
     return this;
   },
   
@@ -46,26 +48,23 @@ TrelloClone.Views.CardIndex = Backbone.View.extend({
     model.destroy();
   },
   
-  handleCardMove: function(event, ui) {
+  handleCardMove: function(event) {
     event.stopPropagation();
     
     var newOrd = this.$el.find(".card-sortable").sortable("toArray", {
       "attribute": "data-id"
     });
-
-    if (ui.sender) {
-      // Object moved to here from other list
-      this.reorderCards(newOrd, ui.sender);
-    } else {
-      this.reorderCards(newOrd);
-    }
+    this.reorderCards(_.map(newOrd, function(string) {
+      return parseInt(string);
+    }));
   },
   
   reorderCards: function(newOrd) {
     if (this.collection.length !== newOrd.length) {
       for (var k = 0; k < this.collection.length; k++) {
-        if (!_.contains(newOrd, this.collection.at(k))) {
+        if (!_.contains(newOrd, this.collection.at(k).id)) {
           this.collection.remove(this.collection.at(k));
+          this.render();
         }
       }
     }
