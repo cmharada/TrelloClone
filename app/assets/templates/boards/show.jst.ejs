@@ -5,7 +5,21 @@
 </div>
 
 <div class="container">
-  <button class="delete-board">Delete this Board</button>
+  <button class="confirm-delete-board"
+    data-toggle="modal"
+    data-target=".confirm-delete">
+    Delete this Board
+  </button>
+  
+  <div class="modal confirm-delete">
+    <div class="modal-dialog">
+      <div class="modal-content">
+          <h4>Really delete this board?</h4>
+          <button data-dismiss="modal">No</button>
+          <button class="delete-board" data-dismiss="modal">Yes</button>
+      </div>
+    </div>
+  </div>
 
   <div class="new-list"></div>
 

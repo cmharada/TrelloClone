@@ -30,7 +30,6 @@ TrelloClone.Views.BoardShow = Backbone.CompositeView.extend({
   },
   
   deleteBoard: function() {
-    /* Maybe ask for confirmation first? */
     this.remove();
     this.model.destroy();
     Backbone.history.navigate("#", { trigger: true });
