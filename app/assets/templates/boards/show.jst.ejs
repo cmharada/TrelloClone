@@ -5,18 +5,24 @@
 </div>
 
 <div class="container">
-  <button class="confirm-delete-board"
+  <button class="confirm-delete-board btn btn-danger"
     data-toggle="modal"
     data-target=".confirm-delete">
     Delete this Board
   </button>
-  
-  <div class="modal confirm-delete">
+
+  <div class="modal fade confirm-delete">
     <div class="modal-dialog">
       <div class="modal-content">
+        <div class="modal-header">
           <h4>Really delete this board?</h4>
-          <button data-dismiss="modal">No</button>
-          <button class="delete-board" data-dismiss="modal">Yes</button>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-default" data-dismiss="modal">No</button>
+          <button class="delete-board btn btn-danger" data-dismiss="modal">
+            Yes
+          </button>
+        </div>
       </div>
     </div>
   </div>

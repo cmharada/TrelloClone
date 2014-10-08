@@ -1,3 +1,14 @@
-<div class="card-show">
-
+<div class="card-modal modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4><%= card.escape("title") %></h4>
+      </div>
+      <div class="modal-body">
+        <%= card.escape("description") %>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
 </div>
