@@ -1,29 +1,29 @@
 /*global TrelloClone JST */
 TrelloClone.Views.CardNew = Backbone.View.extend({
   template: JST["cards/new"],
-  
+
   events: {
     "click": "showForm",
     "submit .new-card-form": "handleSubmit"
   },
-  
+
   initialize: function(list) {
     this.parentList = list;
   },
-  
+
   render: function() {
     var renderedContent = this.template();
     this.$el.html(renderedContent);
-    
+
     return this;
   },
-  
+
   handleSubmit: function(event) {
     event.preventDefault();
-    
+
     var list = this.parentList;
     var that = this;
-    
+
     var params = $(event.currentTarget).serializeJSON();
     params.card.list_id = this.parentList.id;
     var lastCard = this.parentList.cards().last();
@@ -32,7 +32,7 @@ TrelloClone.Views.CardNew = Backbone.View.extend({
     } else {
       params.card.ord = 0;
     }
-    
+
     var newCard = new TrelloClone.Models.Card(params["card"]);
     newCard.save({}, {
       success: function() {
@@ -44,12 +44,12 @@ TrelloClone.Views.CardNew = Backbone.View.extend({
       }
     });
   },
-  
+
   showForm: function() {
     this.$el.find(".new-card-text").addClass("hidden");
     this.$el.find(".new-card-form").removeClass("hidden");
   },
-  
+
   hideForm: function() {
     this.$el.find(".new-card-text").removeClass("hidden");
     this.$el.find(".new-card-form").addClass("hidden");

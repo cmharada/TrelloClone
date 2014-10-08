@@ -1,13 +1,19 @@
-<div class="card-modal modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4><%= card.escape("title") %></h4>
-      </div>
-      <div class="modal-body">
-        <%= card.escape("description") %>
-      </div>
-      <div class="modal-footer">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4><%= card.escape("title") %></h4>
+    </div>
+    <div class="modal-body">
+      Description:
+      <div class="card-description">
+        <div class="card-desc">
+          <%= card.escape("description") %>
+          <button class="btn btn-default edit-card-description">Edit</button>
+        </div>
+        <form class="hidden edit-card-desc">
+          <textarea name="card[description]"><%= card.escape("description") %></textarea>
+          <input type="Submit" class="btn btn-default" value="Edit" data-dismiss="modal">
+        </form>
       </div>
     </div>
   </div>

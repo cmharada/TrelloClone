@@ -107,6 +107,5 @@ TrelloClone.Views.CardIndex = Backbone.CompositeView.extend({
       model: this.collection.get($(event.currentTarget).data("id"))
     });
     this.addSubview(".card-detail-wrapper", cardShowView);
-    this.$(".card-modal").modal();
   }
 });
